@@ -1,11 +1,9 @@
 package com.receitas.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -13,6 +11,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name = "receitas")
 public class Receita {
 
@@ -25,4 +24,10 @@ public class Receita {
 
     @OneToMany(mappedBy = "receita")
     private Set<IngredienteReceitas> ingredienteReceitas;
+
+    public void addIngredienteReceita(IngredienteReceitas ingredienteReceitas){
+        if(this.ingredienteReceitas == null) this.ingredienteReceitas = new HashSet<>();
+
+        this.ingredienteReceitas.add(ingredienteReceitas);
+    }
 }

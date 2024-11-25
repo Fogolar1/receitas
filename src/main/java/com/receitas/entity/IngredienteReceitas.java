@@ -1,16 +1,16 @@
 package com.receitas.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.math.BigDecimal;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 @Table(name = "ingredientes_receitas")
 public class IngredienteReceitas {
 
@@ -27,5 +27,5 @@ public class IngredienteReceitas {
     @JoinColumn(name = "receita_id")
     private Receita receita;
 
-    private Long quantidade;
+    private BigDecimal quantidade;
 }

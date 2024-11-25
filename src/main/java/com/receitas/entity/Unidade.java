@@ -1,17 +1,15 @@
 package com.receitas.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table
+@Builder
+@Table(name = "unidade")
 public class Unidade {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
