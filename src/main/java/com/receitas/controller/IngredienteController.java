@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/ingrediente")
+@CrossOrigin(origins = "http://localhost:3000")
 public class IngredienteController {
 
     private final IngredienteService ingredienteService;
@@ -32,5 +33,10 @@ public class IngredienteController {
     @DeleteMapping("/{id}")
     public void deleteIngredienteById(@PathVariable Long id){
         ingredienteService.deleteById(id);
+    }
+
+    @GetMapping("/unidades")
+    public List<String> listarUnidades(){
+        return ingredienteService.listarUnidades();
     }
 }

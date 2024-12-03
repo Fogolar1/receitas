@@ -1,18 +1,17 @@
 package com.receitas.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-@Embeddable
+@AllArgsConstructor
+@NoArgsConstructor
 public class IngredientesReceitasPK implements Serializable {
 
-    @Column(name = "ingrediente_id")
-    private Long ingredienteId;
+    private Long ingrediente;
 
-    @Column(name = "receita_id")
-    private Long receitaId;
+    private Long receita;
 
 
 }

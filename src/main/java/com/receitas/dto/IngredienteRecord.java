@@ -6,6 +6,6 @@ public record IngredienteRecord(
         Long id,
         String nome,
         BigDecimal quantidade,
-        Long unidade
+        String unidade
 ) {
 }

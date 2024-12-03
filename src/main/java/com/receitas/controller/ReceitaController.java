@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/receita")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ReceitaController {
 
     private final ReceitaService receitaService;
@@ -21,7 +22,7 @@ public class ReceitaController {
     }
 
     @GetMapping("/list")
-    public List<ReceitaGridRecord> list(@RequestParam String nome) {
+    public List<ReceitaGridRecord> list(@RequestParam(required = false) String nome) {
         return receitaService.listarReceitas(nome);
     }
 

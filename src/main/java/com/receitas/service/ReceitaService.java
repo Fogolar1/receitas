@@ -12,11 +12,10 @@ import com.receitas.repository.ReceitaRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -27,15 +26,13 @@ public class ReceitaService {
     private final IngredienteRepository ingredienteRepository;
 
     public ReceitaRecord saveReceita(ReceitaRecord receitaRecord){
-        Receita receita = Receita.builder()
-                .id(receitaRecord.id())
-                .nome(receitaRecord.nome())
-                .procedimento(receitaRecord.procedimento())
-                .build();
+        Receita receita = receitaRepository.findById(receitaRecord.id() == null ? 0 : receitaRecord.id()).orElse(Receita.builder().build());
+        receita.setNome(receitaRecord.nome());
+        receita.setProcedimento(receitaRecord.procedimento());
 
         receita = receitaRepository.save(receita);
 
-        if(receitaRecord.id() != null) ingredientesReceitasRepository.deleteAll(receita.getIngredienteReceitas());
+        if(!CollectionUtils.isEmpty(receita.getIngredienteReceitas())) ingredientesReceitasRepository.deleteAll(receita.getIngredienteReceitas());
 
         for(IngredienteReceitaRecord ingredienteReceita : receitaRecord.ingredientes()){
             Ingrediente ingrediente = ingredienteRepository.findById(ingredienteReceita.ingredienteId()).orElse(null);
@@ -47,9 +44,9 @@ public class ReceitaService {
                     .quantidade(ingredienteReceita.quantidade())
                     .build();
 
-            ingredientesReceitasRepository.save(ingredienteReceitas);
-
             receita.addIngredienteReceita(ingredienteReceitas);
+
+            ingredientesReceitasRepository.save(ingredienteReceitas);
         }
 
         receitaRepository.save(receita);
