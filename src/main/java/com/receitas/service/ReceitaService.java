@@ -10,6 +10,7 @@ import com.receitas.repository.IngredienteRepository;
 import com.receitas.repository.IngredientesReceitasRepository;
 import com.receitas.repository.ReceitaRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -19,6 +20,7 @@ import java.util.*;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ReceitaService {
 
     private final ReceitaRepository receitaRepository;
@@ -32,7 +34,10 @@ public class ReceitaService {
 
         receita = receitaRepository.save(receita);
 
-        if(!CollectionUtils.isEmpty(receita.getIngredienteReceitas())) ingredientesReceitasRepository.deleteAll(receita.getIngredienteReceitas());
+        if(!CollectionUtils.isEmpty(receita.getIngredienteReceitas())){
+            ingredientesReceitasRepository.deleteAll(receita.getIngredienteReceitas());
+            receita.setIngredienteReceitas(new HashSet<>());
+        }
 
         for(IngredienteReceitaRecord ingredienteReceita : receitaRecord.ingredientes()){
             Ingrediente ingrediente = ingredienteRepository.findById(ingredienteReceita.ingredienteId()).orElse(null);
