@@ -20,6 +20,7 @@ public class Receita {
 
     private String nome;
 
+    @Lob
     private String procedimento;
 
     @OneToMany(mappedBy = "receita")

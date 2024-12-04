@@ -1,0 +1,16 @@
+INSERT INTO unidade (UNIDADE, NOME_UNIDADE) VALUES ('ml', 'Mililitros'), ('g', 'Gramas'), ('un', 'Unidade'), ('cx', 'Caixa');
+INSERT INTO ingredientes (NOME, QUANTIDADE, UNIDADE_ID) VALUES ('Leite Condensado', 5, 4), ('Manteiga', 150, 2), ('Chocolate em pó', 1, 4), ('Chocolate Granulado', 1, 4);
+INSERT INTO receitas (NOME, PROCEDIMENTO) VALUES ('Brigadeiro', '1 - Em uma panela funda, acrescente o leite condensado, a manteiga e o chocolate em pó
+2 - Cozinhe em fogo médio e mexa até que o brigadeiro comece a desgrudar da panela 
+3 - Deixe esfriar e faça pequenas bolas com a mão passando a massa no chocolate granulado');
+INSERT INTO INGREDIENTES_RECEITAS(QUANTIDADE,INGREDIENTE_ID,RECEITA_ID ) VALUES (1, 1, 1), (50, 2, 1), (0.5, 3, 1), (1, 4, 1);
+INSERT INTO ingredientes (NOME, QUANTIDADE, UNIDADE_ID) VALUES ('Óleo', 1000, 1), ('Cebola', 200, 2), ('Polpa de tomate', 100, 2), ('Sal', 1000, 2), ('Salsicha', 5, 3), ('Pão', 12, 3);
+INSERT INTO receitas (NOME, PROCEDIMENTO) VALUES ('Hot Dog Simples', '1 - Em uma panela grande, coloque o óleo e leve ao fogo alto para aquecer. Junte a cebola e refogue por 2 minutos, ou até dourar. Acrescente a polpa de tomate e o sal, misture bem e deixe cozinhar em fogo baixo por 5 minutos, ou até encorpar. Adicione a salsicha e cozinhe por mais 5 minutos. Retire do fogo e reserve
+2 - Distribua as salsichas pelos pães e regue com o molho');
+INSERT INTO INGREDIENTES_RECEITAS(QUANTIDADE,INGREDIENTE_ID,RECEITA_ID ) VALUES (10, 5, 2), (50, 6, 2), (500, 7, 2), (50, 8, 2), (10, 9, 2), (10, 10, 2);
+INSERT INTO ingredientes (NOME, QUANTIDADE, UNIDADE_ID) VALUES ('Batata', 1000, 2), ('Leite', 500, 1), ('Dente de alho', 5, 3);
+INSERT INTO receitas (NOME, PROCEDIMENTO) VALUES ('Purê de batata', '1 - Cozinhe as batatas até ficarem bem moles
+2 - Descasque-as ainda quentes e esprema as batatas no espremedor.
+3 - Despeje as batatas em um recipiente e acrescente a manteiga, o sal e o alho, e mexa até que a manteiga derreta por completo
+4- Acrescente o leite aos poucos e continue mexendo');
+INSERT INTO INGREDIENTES_RECEITAS(QUANTIDADE,INGREDIENTE_ID,RECEITA_ID ) VALUES (1000, 11, 3), (250, 12, 3), (100, 2, 3), (100, 8, 3), (1, 13, 3);
