@@ -30,11 +30,6 @@ public class IngredienteController {
         return ingredienteService.getById(id);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteIngredienteById(@PathVariable Long id){
-        ingredienteService.deleteById(id);
-    }
-
     @GetMapping("/unidades")
     public List<String> listarUnidades(){
         return ingredienteService.listarUnidades();

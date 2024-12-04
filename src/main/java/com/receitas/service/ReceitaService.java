@@ -94,4 +94,19 @@ public class ReceitaService {
     public void deleteReceitaById(Long id){
         receitaRepository.deleteById(id);
     }
+
+    public void fazerReceita(Long id){
+        Receita receita = receitaRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Receita não encontrada"));
+
+        Set<IngredienteReceitas> ingredientesReceitas = receita.getIngredienteReceitas();
+        if(CollectionUtils.isEmpty(ingredientesReceitas)) throw new RuntimeException("Receita sem ingredientes");
+
+        for(IngredienteReceitas ingredienteReceita : ingredientesReceitas){
+            Ingrediente ingrediente = ingredienteReceita.getIngrediente();
+            BigDecimal quantidadeReceita = ingredienteReceita.getQuantidade();
+            if(ingrediente.getQuantidade().subtract(quantidadeReceita).compareTo(BigDecimal.ZERO) < 0) throw new RuntimeException("Ingrediente insuficiente");
+            ingrediente.setQuantidade(ingrediente.getQuantidade().subtract(quantidadeReceita));
+            ingredienteRepository.save(ingrediente);
+        }
+    }
 }

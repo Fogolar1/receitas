@@ -35,4 +35,9 @@ public class ReceitaController {
     public void delete(@PathVariable Long id) {
         receitaService.deleteReceitaById(id);
     }
+
+    @PostMapping("/fazer/{id}")
+    public void fazerReceita(@PathVariable Long id) {
+        receitaService.fazerReceita(id);
+    }
 }

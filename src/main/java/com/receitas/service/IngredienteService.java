@@ -42,10 +42,6 @@ public class IngredienteService {
         return new IngredienteRecord(ingrediente.getId(), ingrediente.getNome(), ingrediente.getQuantidade(), ingrediente.getUnidade().getUnidade());
     }
 
-    public void deleteById(Long id){
-        ingredienteRepository.deleteById(id);
-    }
-
     public List<String> listarUnidades(){
         return unidadeRepository.findAll().stream().map(Unidade::getUnidade).toList();
     }
