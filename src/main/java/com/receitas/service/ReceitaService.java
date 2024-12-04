@@ -77,7 +77,7 @@ public class ReceitaService {
             receitaRecords.add(new ReceitaGridRecord(receita.getId(), receita.getNome(), available));
         }
 
-        return receitaRecords;
+        return receitaRecords.stream().sorted(Comparator.comparing(ReceitaGridRecord::available).reversed()).toList();
     }
 
     public ReceitaRecord findReceitaById(Long id){
